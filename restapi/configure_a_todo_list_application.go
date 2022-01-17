@@ -14,13 +14,13 @@ import (
 	"trySwagger/restapi/operations/todos"
 )
 
-//go:generate swagger generate server --target ../../trySwagger --name TodoList --spec ../swagger.yml --principal interface{}
+//go:generate swagger generate server --target ../../trySwagger --name ATodoListApplication --spec ../swagger.yml --principal interface{}
 
-func configureFlags(api *operations.TodoListAPI) {
+func configureFlags(api *operations.ATodoListApplicationAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }
 }
 
-func configureAPI(api *operations.TodoListAPI) http.Handler {
+func configureAPI(api *operations.ATodoListApplicationAPI) http.Handler {
 	// configure the api here
 	api.ServeError = errors.ServeError
 
@@ -38,9 +38,9 @@ func configureAPI(api *operations.TodoListAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	if api.TodosGetHandler == nil {
-		api.TodosGetHandler = todos.GetHandlerFunc(func(params todos.GetParams) middleware.Responder {
-			return middleware.NotImplemented("operation todos.Get has not yet been implemented")
+	if api.TodosFindTodosHandler == nil {
+		api.TodosFindTodosHandler = todos.FindTodosHandlerFunc(func(params todos.FindTodosParams) middleware.Responder {
+			return middleware.NotImplemented("operation todos.FindTodos has not yet been implemented")
 		})
 	}
 
